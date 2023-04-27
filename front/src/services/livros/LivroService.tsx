@@ -18,9 +18,9 @@ export const LivroService = () => {
     return respo.data
   }
 
-  const atualizarLivroId = async (id:any): Promise<any> => {
+  const atualizarLivroId = async (id:any, form:any): Promise<any> => {
     const url:string = `${Url}/livro/${id}`
-    const respo:AxiosResponse<any> = await httpDjango.put(url, id)
+    const respo:AxiosResponse<any> = await httpDjango.put(url, form)
     return respo.data
   }
 
@@ -30,9 +30,9 @@ export const LivroService = () => {
     return respo.data
   }
 
-  const criarLivro = async (): Promise<any> => {
+  const criarLivro = async (form:any): Promise<any> => {
     const url:string = `${Url}/livro`
-    const respo:AxiosResponse<any> = await httpDjango.post(url)
+    const respo:AxiosResponse<any> = await httpDjango.post(url, form)
     return respo.data
   }
 
