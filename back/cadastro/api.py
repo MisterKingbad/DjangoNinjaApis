@@ -4,7 +4,9 @@ from cadastro.schemas import LivroSchema
 from .models import Livro
 from django.shortcuts import get_object_or_404
 from django.forms.models import model_to_dict # convertendo um model para um dicionario do python
+
 api = NinjaAPI()
+
 
 @api.get('livro/')
 def listar(request):
@@ -14,11 +16,13 @@ def listar(request):
   
   return response
 
+
 @api.get('livro/{int:id}')
 def listar_livro(request, id):
   livro = get_object_or_404(Livro, id=id) # get por id
   
   return model_to_dict(livro)
+
 
 @api.get('livro-consulta/') 
 def listar_consultar(request, id: int = 1):
@@ -27,16 +31,6 @@ def listar_consultar(request, id: int = 1):
   return model_to_dict(livro)
   
 
-'''class LivroSchema(Schema):
-  titulo: str
-  descricao: str
-  autor: str = None '''
-  
-'''class LivroSchema(ModelSchema):
-  class Config:
-    model = Livro
-    model_fields = '__all__' '''
-  
 @api.post('livro', response=LivroSchema)
 def criar_livro(request, livro: LivroSchema):
   livro =  Livro(**livro.dict()) 
@@ -47,3 +41,22 @@ def criar_livro(request, livro: LivroSchema):
 def file_upload(request, file: UploadedFile):
   
   return
+
+
+@api.put('livro/{int:id}', response=LivroSchema)
+def atualizar_livro(request, id, payload: LivroSchema):
+  livro = get_object_or_404(Livro, id=id)
+  for attr, value in payload.dict().items():
+    setattr(livro, attr, value)
+    
+    livro.save()
+    return livro
+  
+  
+@api.delete('livro/{int:id}')
+def deletar_livro(request, id):
+  livro = get_object_or_404(Livro, id=id)
+  livro.delete()
+  return {'success': True}
+  
+
