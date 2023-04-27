@@ -36,17 +36,17 @@ export default function NovoLivro () {
         <Box p={2}>
           <Grid>
             <FormControl sx={{ m: 1 }} fullWidth>
-              <TextField label="Titulo" variant="outlined" placeholder="Titulo" size="small" InputLabelProps={{
+              <TextField type="text" label="Titulo" variant="outlined" placeholder="Titulo" size="small" InputLabelProps={{
                 style: { fontWeight: 'bold' },
               }} value={form.titulo} onChange={(e) => setForm({...form, titulo: e.target.value})}/>
             </FormControl>
             <FormControl sx={{ m: 1 }} fullWidth>
-              <TextField label="Descricao" variant="outlined" placeholder="Descricao" size="small" InputLabelProps={{
+              <TextField type="text" label="Descricao" variant="outlined" placeholder="Descricao" size="small" InputLabelProps={{
                 style: { fontWeight: 'bold' },
               }} value={form.descricao} onChange={(e) => setForm({...form, descricao: e.target.value})}/>
             </FormControl>
             <FormControl sx={{ m: 1 }} fullWidth>
-              <TextField label="Autor" variant="outlined" placeholder="Autor" size="small" InputLabelProps={{
+              <TextField type="text" label="Autor" variant="outlined" placeholder="Autor" size="small" InputLabelProps={{
                 style: { fontWeight: 'bold' },
               }} value={form.autor} onChange={(e) => setForm({...form, autor: e.target.value})}/>
             </FormControl>
